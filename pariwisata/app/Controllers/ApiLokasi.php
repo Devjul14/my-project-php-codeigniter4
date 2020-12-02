@@ -25,8 +25,11 @@ class ApiLokasi extends ResourceController
         $jalan = $this->request->getPost('jalan');
         $kota = $this->request->getPost('kota');
         $negara = $this->request->getPost('negara');
+        $id_lokasi = $this->request->getPost('id_lokasi');
+
 
         $data = [
+            'id_lokasi' => $id_lokasi,
             'lat' => $lat,
             'long' => $long,
             'jalan' => $jalan,
@@ -135,7 +138,7 @@ class ApiLokasi extends ResourceController
         $hapus = $this->model->deleteLokasi($id);
         if ($hapus) {
             $code = 200;
-            $msg = ['message' => 'Deleted category successfully'];
+            $msg = ['message' => 'Deleted lokasi successfully'];
             $response = [
                 'status' => $code,
                 'error' => false,

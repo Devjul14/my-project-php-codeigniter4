@@ -8,8 +8,8 @@ class ModelWisata extends Model
 {
 
     protected $table = "wisata";
-    // protected $primaryKey = 'id_wisata';
-    // protected $allowedFields = ['nama_wisata', 'id_lokasi', 'id_kategori', 'tiket', 'deskripsi', 'photo'];
+    protected $primaryKey = 'id_wisata';
+    protected $allowedFields = ['nama_wisata', 'id_lokasi', 'id_kategori', 'tiket', 'deskripsi', 'photo'];
 
     public function getWisata($id = false)
     {
@@ -25,8 +25,10 @@ class ModelWisata extends Model
 
     public function saveWisata($data)
     {
-        $query = $this->db->table($this->table)->insert($data);
-        return $query;
+        $query = $this->db->table('wisata')
+            ->join('lokasi', 'lokasi.id_lokasi=wisata.id_lokasi')
+            ->join('kategori', 'kategori.id_kategori=wisata.id_kategori')
+            ->get()->getResultArray();
     }
     public function updateWisata($data, $id)
     {

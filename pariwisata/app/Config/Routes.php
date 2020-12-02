@@ -32,7 +32,12 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->resource('apiwisata');
+
+// $routes->get('/wisata/(:segment)', 'Wisata::detail/$1');
+
+$routes->resource('api/wisata', ['controller' => 'ApiWisata']);
+$routes->resource('api/kategori', ['controller' => 'ApiKategori']);
+$routes->resource('api/lokasi', ['controller' => 'ApiLokasi']);
 
 /**
  * --------------------------------------------------------------------
